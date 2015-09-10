@@ -81,6 +81,116 @@ Web框架
 - Lapis (Web Framework OpenResty && Lua)
 - aLiLua | A High-Performance Lua Web Framework
 -----------------------------------------------
+ngx_lua 
+
+init_by_lua 
+init_worker_by_lua 
+set_by_lua 
+rewrite_by_lua 
+access_by_lua 
+content_by_lua 
+header_filter_by_lua 
+body_filter_by_lua 
+log_by_lua
+
+-----------------------------------------------
+
+"Light threads" based on Lua coroutines
+
+--发起同步非阻塞请求
+ngx.location.capture("/foo") 
+ngx.location.capture_multi{ {"/foo"}, "/bar"}}
+
+-- 数据字典操作，可以在nginx不同 worker 的 pool 间共享
+--lua_shared_dict dogs 10m;
+local dogs = ngx.shared.dogs 
+dogs:add("Tom", 5) 
+dogs:set("Tom", 7) 
+dogs:incr("Tom", 1) 
+dogs:delete("Tom", 1)
+
+-- 延时执行
+local function do_job() 
+    ...
+end
+local ok, err = ngx.timer.at(1.5, do_job)
+
+-----------------------------------------------
+
+
+Construct fully RESTful queries in a single location
+
+location ~ '^/cat/(\d+)' {
+    set $id $1;
+    set_form_input $name; set_quote_sql_str $quoted_name $name;
+
+    postgres_query GET "select * from cats where id=$id";
+    postgres_query DELETE "delete from cats where id=$id";
+    postgres_query POST "insert into cats (id, name) values($id, $quoted_name)";
+
+    postgres_pass my_pg_backend; 
+}
+
+-----------------------------------------------
+
+其他扩展模块
+
+lua­resty­memcached
+lua­resty­redis 
+lua­resty­mysql
+lua­resty­dns 
+lua­resty­upload 
+lua­resty­websocket 
+lua­resty­lock 
+lua­resty­upstream­healthcheck
+
+-----------------------------------------------
+
+nginx.conf scripting
+
+server
+{
+        listen 80;
+        server_name openresty.dev;
+
+        error_log   /home/wwwlogs/openresty.dev.error.log error;
+        access_log  /home/wwwlogs/openresty.dev.access.log  access;
+
+        #use ngx_echo_module
+        location = '/halo' {
+                add_header Content-Type text/html;
+                echo "halo, $arg_person!";
+                break;
+        }
+
+        #use ngx_http_lua_module
+        location ~* ^/test(.*)$ {
+            #lua_code_cache off;
+            content_by_lua "
+                ngx.send_headers({'Content-Type:text/html'})
+                ngx.say('tester')
+                ngx.exit(200)
+            ";
+        }
+
+        #use ngx_http_lua_module
+        location ~* ^/test(.*)$ {
+            #lua_code_cache off;
+            content_by_lua_file "
+                ngx.send_headers({'Content-Type:text/html'})
+                ngx.say('tester')
+                ngx.exit(200)
+            ";
+        }
+}
+
+http://openresty.dev/halo?person=rmingwang
+halo, rmingwang!
+
+http://openresty.dev/test
+tester
+-----------------------------------------------
+
 
 OpenResty & Lua
 
@@ -113,16 +223,14 @@ upstream节点健康检查
 
 -----------------------------------------------
 
-nonblocking example
+- I/O multiplexing
+- Connections Pool
+- noBlocking!
+
+non-blocking MySQL
 ngx_libdrizzle
-
 -----------------------------------------------
-halo word
-
------------------------------------------------
-
-
-
+Any questions?
 
 **OpenResty**
 
