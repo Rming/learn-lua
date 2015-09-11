@@ -59,18 +59,18 @@ Lua is a powerful, fast, lightweight, embeddable scripting language.
 - 跨平台 ASCII C实现(C API)
 - 自动内存管理（GC 标记清除法）
 
-* 接口语言 、嵌入式语言、胶水语言
+* 接口语言 、嵌入式语言、胶水语言  
 
 -----------------------------------------------
 
-Isomorphic JS  => Isomorphic Lua ?
-JS   run on both the client and the server
-Lua  200K => JS lua parser
+Isomorphic JS  => Isomorphic Lua ?  
+JS   run on both the client and the server  
+Lua  200K => JS lua parser  
 
-"Write once, run anywhere" (WORA)
-Java        JVM(JIT inside)
-JavaScript  V8 engine(JIT inside)
-Lua         Ascii C / 200K / JIT / Embedded
+"Write once, run anywhere" (WORA)  
+Java        JVM(JIT inside)  
+JavaScript  V8 engine(JIT inside)  
+Lua         Ascii C / 200K / JIT / Embedded  
 
 c++, php, python...
 x86/x64, ARM, MIPS, PPC, even => STM32, C51...
@@ -87,65 +87,65 @@ JS  => 原型
 -----------------------------------------------
 
 
-OpenResty & Lua
+OpenResty & Lua  
 
-nginx + perl ?
-    ngx_http_perl_module
-nginx + javascript ?
-    ngx_http_js_module
-nginx + 第三方模块
-主要：
-LuaJIT (Just-In-Time Compiler for the Lua programming language. )
-HttpLuaModule (ngx_lua - Embed the power of Lua into Nginx)
-LuaRestyCoreLibrary(lua-resty-core - New FFI-based Lua API for the ngx_lua module)
+nginx + perl ?  
+    ngx_http_perl_module  
+nginx + javascript ?  
+    ngx_http_js_module  
+nginx + 第三方模块  
+主要：  
+LuaJIT (Just-In-Time Compiler for the Lua programming language. )  
+HttpLuaModule (ngx_lua - Embed the power of Lua into Nginx)  
+LuaRestyCoreLibrary(lua-resty-core - New FFI-based Lua API for the ngx_lua module)  
 
 -----------------------------------------------
 
-ngx_lua 
+ngx_lua   
 
-init_by_lua 
-init_worker_by_lua 
-set_by_lua 
-rewrite_by_lua 
-access_by_lua 
-content_by_lua 
-header_filter_by_lua 
-body_filter_by_lua 
-log_by_lua
+init_by_lua   
+init_worker_by_lua   
+set_by_lua   
+rewrite_by_lua   
+access_by_lua   
+content_by_lua   
+header_filter_by_lua   
+body_filter_by_lua   
+log_by_lua  
 
 
 -----------------------------------------------
 
 其他扩展模块
 
-lua­resty­memcached
-lua­resty­redis 
-lua­resty­mysql
-lua­resty­dns 
-lua­resty­upload 
-lua­resty­websocket 
-lua­resty­lock 
-lua­resty­upstream­healthcheck
+lua­resty­memcached  
+lua­resty­redis   
+lua­resty­mysql  
+lua­resty­dns   
+lua­resty­upload   
+lua­resty­websocket   
+lua­resty­lock   
+lua­resty­upstream­healthcheck  
 
 -----------------------------------------------
 
-Nginx HTTP 请求生命周期
-http://tengine.taobao.org/book/_images/chapter-2-2.PNG
+Nginx HTTP 请求生命周期  
+http://tengine.taobao.org/book/_images/chapter-2-2.PNG  
 
 -----------------------------------------------
 
-nginx请求处理流程
-配置文件『声明性的』，而非『过程性的』
+nginx请求处理流程  
+配置文件『声明性的』，而非『过程性的』  
 
 -----------------------------------------------
 
 Lua + Nginx API for Lua + ngx.shared.DICT / memcache / redis / mysql / postgresql 
 
-应用实例：
-防止DDos,清洗流量
-XSS filter
-upstream节点健康检查
-图片处理
+应用实例：  
+防止DDos,清洗流量  
+XSS filter  
+upstream节点健康检查  
+图片处理  
 
 -----------------------------------------------
 
