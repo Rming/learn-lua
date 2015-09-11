@@ -1,5 +1,10 @@
 
+
+
 The Programming Language Lua and OpenResty
+
+http://slides.com/rmingwang/lua-and-openresty/fullscreen
+
 -----------------------------------------------
 
 
