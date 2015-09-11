@@ -1,6 +1,6 @@
-local abc = {
-    name  = "rming",
-    first = "wang",
+local person = {
+    first = "rming",
+    last  = "wang",
 }
 
 local _dump
@@ -15,7 +15,4 @@ _dump = function(t)
     end    
 end
 
---_dump(_G)
---_dump(abc)
-
-return _dump
+_dump(person)

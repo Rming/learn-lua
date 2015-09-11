@@ -2,6 +2,7 @@
 The Programming Language Lua and OpenResty
 -----------------------------------------------
 
+
 复杂系统 => Kernel & Configuration
 
 Kernel -> 
@@ -18,6 +19,35 @@ Configuration ->
 
 C++   -> OC -> Lua
 C/C++ -> Lua API
+
+-----------------------------------------------
+
+
+应用
+
+使用lua开发的游戏
+- 魔兽世界
+- 梦幻西游
+- 愤怒的小鸟（Wax）
+...
+
+游戏插件
+- 魔兽争霸（自定义皮肤界面）
+- Dota2 （RPG地图编辑器脚本）
+...
+
+-----------------------------------------------
+
+其他应用
+- MySQL Proxy Scripting（连接池管理，查询过滤，读写分离，负载均衡）
+- Wireshark Lua API 
+- OpenWrt Lua UCI API (LuCI)
+- Adobe Lightroom
+
+Web框架
+- Sailor! A Lua MVC Framework
+- Lapis (Web Framework OpenResty && Lua)
+- aLiLua | A High-Performance Lua Web Framework
 
 -----------------------------------------------
 
@@ -56,31 +86,21 @@ JS  => 原型
 
 -----------------------------------------------
 
-应用
 
-使用lua开发的游戏
-- 魔兽世界
-- 梦幻西游
-- 愤怒的小鸟（Wax）
-...
+OpenResty & Lua
 
-游戏插件
-- 魔兽争霸（自定义皮肤界面）
-- Dota2 （RPG地图编辑器脚本）
-...
+nginx + perl ?
+    ngx_http_perl_module
+nginx + javascript ?
+    ngx_http_js_module
+nginx + 第三方模块
+主要：
+LuaJIT (Just-In-Time Compiler for the Lua programming language. )
+HttpLuaModule (ngx_lua - Embed the power of Lua into Nginx)
+LuaRestyCoreLibrary(lua-resty-core - New FFI-based Lua API for the ngx_lua module)
 
 -----------------------------------------------
-其他应用
-- MySQL Proxy Scripting（连接池管理，查询过滤，读写分离，负载均衡）
-- Wireshark Lua API 
-- OpenWrt Lua UCI API (LuCI)
-- Adobe Lightroom
 
-Web框架
-- Sailor! A Lua MVC Framework
-- Lapis (Web Framework OpenResty && Lua)
-- aLiLua | A High-Performance Lua Web Framework
------------------------------------------------
 ngx_lua 
 
 init_by_lua 
@@ -93,7 +113,51 @@ header_filter_by_lua
 body_filter_by_lua 
 log_by_lua
 
+
 -----------------------------------------------
+
+其他扩展模块
+
+lua­resty­memcached
+lua­resty­redis 
+lua­resty­mysql
+lua­resty­dns 
+lua­resty­upload 
+lua­resty­websocket 
+lua­resty­lock 
+lua­resty­upstream­healthcheck
+
+-----------------------------------------------
+
+Nginx HTTP 请求生命周期
+http://tengine.taobao.org/book/_images/chapter-2-2.PNG
+
+-----------------------------------------------
+
+nginx请求处理流程
+配置文件『声明性的』，而非『过程性的』
+
+-----------------------------------------------
+
+Lua + Nginx API for Lua + ngx.shared.DICT / memcache / redis / mysql / postgresql 
+
+应用实例：
+防止DDos,清洗流量
+XSS filter
+upstream节点健康检查
+图片处理
+
+-----------------------------------------------
+
+- I/O multiplexing
+- Connections Pool
+- noBlocking!
+
+non-blocking MySQL
+ngx_libdrizzle
+
+-----------------------------------------------
+
 
 "Light threads" based on Lua coroutines
 
@@ -133,18 +197,6 @@ location ~ '^/cat/(\d+)' {
 
 -----------------------------------------------
 
-其他扩展模块
-
-lua­resty­memcached
-lua­resty­redis 
-lua­resty­mysql
-lua­resty­dns 
-lua­resty­upload 
-lua­resty­websocket 
-lua­resty­lock 
-lua­resty­upstream­healthcheck
-
------------------------------------------------
 
 nginx.conf scripting
 
@@ -189,48 +241,15 @@ halo, rmingwang!
 
 http://openresty.dev/test
 tester
------------------------------------------------
-
-
-OpenResty & Lua
-
-nginx + perl ?
-    ngx_http_perl_module
-nginx + javascript ?
-    ngx_http_js_module
-nginx + 第三方模块
-主要：
-LuaJIT (Just-In-Time Compiler for the Lua programming language. )
-HttpLuaModule (ngx_lua - Embed the power of Lua into Nginx)
-LuaRestyCoreLibrary(lua-resty-core - New FFI-based Lua API for the ngx_lua module)
------------------------------------------------
-Nginx HTTP 请求生命周期
-http://tengine.taobao.org/book/_images/chapter-2-2.PNG
-
------------------------------------------------
-nginx请求处理流程
-配置文件『声明性的』，而非『过程性的』
 
 -----------------------------------------------
 
-Lua + Nginx API for Lua + ngx.shared.DICT / memcache / redis / mysql / postgresql 
 
-应用实例：
-防止DDos,清洗流量
-XSS filter
-upstream节点健康检查
-图片处理
-
------------------------------------------------
-
-- I/O multiplexing
-- Connections Pool
-- noBlocking!
-
-non-blocking MySQL
-ngx_libdrizzle
------------------------------------------------
 Any questions?
+
+
+-----------------------------------------------
+
 
 **OpenResty**
 
